@@ -87,17 +87,20 @@ public class MainScreen implements Screen{
         }
         sgame.batch.end();
 
-        if (Gdx.input.isTouched())
+        if (showingLogo == false)
         {
-            if (mode1.contains(width_factor * Gdx.input.getX(), HEIGHT - (height_factor * Gdx.input.getY())))
+            if (Gdx.input.isTouched())
             {
-                Gdx.input.vibrate(20);
-                sgame.setScreen(new Field(sgame, this, 1));
-            }
-            else if (mode2.contains(width_factor * Gdx.input.getX(), HEIGHT - (height_factor * Gdx.input.getY())))
-            {
-                Gdx.input.vibrate(20);
-                sgame.setScreen(new Field(sgame, this, 2));
+                if (mode1.contains(width_factor * Gdx.input.getX(), HEIGHT - (height_factor * Gdx.input.getY())))
+                {
+                    Gdx.input.vibrate(20);
+                    sgame.setScreen(new Field(sgame, this, 1));
+                }
+                else if (mode2.contains(width_factor * Gdx.input.getX(), HEIGHT - (height_factor * Gdx.input.getY())))
+                {
+                    Gdx.input.vibrate(20);
+                    sgame.setScreen(new Field(sgame, this, 2));
+                }
             }
         }
     }
