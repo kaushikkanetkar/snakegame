@@ -84,7 +84,7 @@ public class MainScreen implements Screen{
         {
             sgame.batch.draw(image, 0, 0, 1280, 768);
             font.draw(sgame.batch, "High Score: " + getHighScore(1), 215, HEIGHT - 540);
-            font.draw(sgame.batch, "High Score: " + getHighScore(2), 860, HEIGHT - 540);
+            font.draw(sgame.batch, "High Score: " + getHighScore(2), 825, HEIGHT - 540);
         }
 
         sgame.batch.end();
