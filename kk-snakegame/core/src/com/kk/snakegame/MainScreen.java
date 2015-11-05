@@ -38,7 +38,7 @@ public class MainScreen implements Screen{
     {
         sgame = snakeGame;
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 250, 150);
+        camera.setToOrtho(false, 500, 300);
         image = new Texture(Gdx.files.internal("mainscreen.jpg"));
         mainlogo = new Texture((Gdx.files.internal("logo_main.jpg")));
         mode1 = new Rectangle(0, 200, WIDTH/2, 270);
@@ -62,6 +62,7 @@ public class MainScreen implements Screen{
         if ((showingLogo == true) &&
             (TimeUtils.millis() - firstTime > 3000))
         {
+            // Stop showing logo if its been 3 seconds
             showingLogo = false;
         }
 
@@ -77,7 +78,7 @@ public class MainScreen implements Screen{
 
         if (showingLogo == true)
         {
-            sgame.batch.draw(mainlogo, 0, 0, 250, 150);
+            sgame.batch.draw(mainlogo, 0, 0, 500, 300);
         }
         else
         {
@@ -85,6 +86,7 @@ public class MainScreen implements Screen{
             font.draw(sgame.batch, "High Score: " + getHighScore(1), 215, HEIGHT - 540);
             font.draw(sgame.batch, "High Score: " + getHighScore(2), 860, HEIGHT - 540);
         }
+
         sgame.batch.end();
 
         if (showingLogo == false)

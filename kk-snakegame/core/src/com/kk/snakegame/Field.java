@@ -53,18 +53,20 @@ public class Field implements Screen {
     MainScreen mainScreen;
     final SnakeGame sgame;
     OrthographicCamera camera;
+
     Texture image, apple, keys;
     Array<Rectangle> Snake;
     Rectangle snakeFood, left, right, top, bottom, exitRect;
+
     long lastFoodTime;
-    float lastx, lasty;
-    int snakeDirection, orientation = HORIZONTAL_RIGHT;  // Horizontal
-    boolean snakeAte, isChanged = false;
+    float lastx, lasty; // DEBUG
     float width_factor = (float)WIDTH/(float)GFX_WIDTH, height_factor = (float)HEIGHT/(float)GFX_HEIGHT;
+    int gameMode;
+    int snakeDirection, orientation = HORIZONTAL_RIGHT;  // Horizontal
     int score = 0;
     int lengthOfSnake = 0;
     boolean gameOver = false;
-    int gameMode;
+    boolean snakeAte, isChanged = false;
 
     public Field(SnakeGame snakeGame, MainScreen main, int mode)
     {
@@ -92,8 +94,8 @@ public class Field implements Screen {
         performDraw();
         sgame.batch.end();
 
-        if ((gameOver == true) &&
-             (Gdx.input.justTouched()))
+        // Check if Game is over and exit back to main screen
+        if ((gameOver == true) && (Gdx.input.justTouched()))
         {
             if (exitRect.contains((float)(width_factor * Gdx.input.getX()), (float)(HEIGHT - height_factor * Gdx.input.getY())))
             {
@@ -102,7 +104,7 @@ public class Field implements Screen {
             }
         }
 
-        // Does the snake overlap ?
+        // Check end of game
         checkEndOfGame();
         if (gameOver == true)
         {
@@ -112,6 +114,7 @@ public class Field implements Screen {
             }
         }
 
+        // Continue playing...
         if (gameOver == false)
         {
             // Check for input from user
@@ -122,6 +125,7 @@ public class Field implements Screen {
             if ((TimeUtils.millis() - lastFoodTime > FOOD_DELAY) ||
                 (snakeAte == true))
             {
+                // Produce a new food location
                 getFoodLocation();
             }
         }
@@ -131,7 +135,13 @@ public class Field implements Screen {
 
     private void performDraw()
     {
+        // Draw the layout
         sgame.batch.draw(keys, 0, 0, WIDTH, HEIGHT);
+
+        // Draw the food
+        sgame.batch.draw(apple, snakeFood.x, snakeFood.y, snakeFood.width, snakeFood.height);
+
+        // Draw the Snake
         for (Rectangle piece : Snake)
         {
             sgame.batch.draw(image, piece.x, piece.y, piece.width, piece.height);
@@ -141,9 +151,13 @@ public class Field implements Screen {
             }
         }
 
+        // Render the scores
         sgame.font.draw(sgame.batch, "Score: " + "" + score, 954, HEIGHT - 22);
         sgame.font.draw(sgame.batch, "High Score: " + getHighScore(), 200, HEIGHT - 22);
 
+        sgame.font.draw(sgame.batch, "Fps: " + Gdx.graphics.getFramesPerSecond(), 1100, HEIGHT - 50);
+
+        // Show time left or game over
         if (gameOver == false)
         {
             sgame.font.draw(sgame.batch, "Time left: " + "" + getTimeLeft(), 550, HEIGHT - 22);
@@ -153,12 +167,11 @@ public class Field implements Screen {
             sgame.font.draw(sgame.batch, "- Game Over - ", 2, (3*HEIGHT/4) + 40);
             sgame.font.draw(sgame.batch, "  Tap here  ", 6, (3*HEIGHT/4) + 10);
         }
+
         if (DEBUG == 1)
         {
             sgame.font.draw(sgame.batch, "Length: " + (lastx - Snake.first().x) + " " + (lasty - Snake.first().y) + "    " + Snake.first().x, 200, 130);
         }
-
-        sgame.batch.draw(apple, snakeFood.x, snakeFood.y, snakeFood.width, snakeFood.height);
     }
 
     public void addressUserInput()
@@ -255,6 +268,10 @@ public class Field implements Screen {
         {
             score+= getTimeLeft();
             Gdx.input.vibrate(30);
+            if (score > getHighScore())
+            {
+                setHighScore(score);
+            }
             return true;
         }
         return false;
@@ -293,7 +310,35 @@ public class Field implements Screen {
         snakeFood.height = 2 * foodPieceHeight;
         snakeFood.x = (MathUtils.random(leftPadding, (WIDTH - rightPadding) - snakeFood.width - 1) / snakePieceWidth) * snakePieceWidth;
         snakeFood.y = (MathUtils.random(bottomPadding, (HEIGHT - topPadding) - snakeFood.height - 1) / snakePieceWidth) * snakePieceWidth;
+
+        while (isFoodOnSnake(snakeFood))
+        {
+            snakeFood.x += snakeFood.width;
+            if (snakeFood.x > (WIDTH - rightPadding - snakeFood.width - 1))
+            {
+                snakeFood.x = leftPadding + 1;
+            }
+
+            snakeFood.y += snakeFood.height;
+            if (snakeFood.y > (HEIGHT - topPadding - snakeFood.height - 1))
+            {
+                snakeFood.y = bottomPadding + 1;
+            }
+        }
+
         lastFoodTime = TimeUtils.millis();
+    }
+
+    public boolean isFoodOnSnake(Rectangle snakeFood)
+    {
+        for (Rectangle rect : Snake)
+        {
+            if (snakeFood.overlaps(rect))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void checkEndOfGame()
