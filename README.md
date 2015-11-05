@@ -4,4 +4,4 @@ Snakegame is my own implementation of the famous Snake game. I have used libgdx 
 
 <B>Version</B>
 --
-0.91
+0.92
