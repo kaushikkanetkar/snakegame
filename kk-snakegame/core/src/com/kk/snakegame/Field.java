@@ -64,6 +64,7 @@ public class Field implements Screen {
     int gameMode;
     int snakeDirection, orientation = HORIZONTAL_RIGHT;  // Horizontal
     int score = 0;
+    int chancesRemaining = 4;
     int lengthOfSnake = 0;
     boolean gameOver = false;
     boolean snakeAte, isChanged = false;
@@ -122,6 +123,12 @@ public class Field implements Screen {
             snakeAte = ifSnakeAteFood();
             updateSnake();
 
+            if ((TimeUtils.millis() - lastFoodTime > FOOD_DELAY) &&
+                (snakeAte == false))
+            {
+                chancesRemaining--;
+            }
+
             if ((TimeUtils.millis() - lastFoodTime > FOOD_DELAY) ||
                 (snakeAte == true))
             {
@@ -154,8 +161,13 @@ public class Field implements Screen {
         // Render the scores
         sgame.font.draw(sgame.batch, "Score: " + "" + score, 954, HEIGHT - 22);
         sgame.font.draw(sgame.batch, "High Score: " + getHighScore(), 200, HEIGHT - 22);
+        sgame.font.draw(sgame.batch, "Chances: " + chancesRemaining, 1095, HEIGHT - 70);
 
-        sgame.font.draw(sgame.batch, "Fps: " + Gdx.graphics.getFramesPerSecond(), 1100, HEIGHT - 50);
+        if (DEBUG==1)
+        {
+            sgame.font.draw(sgame.batch, "Fps: " + Gdx.graphics.getFramesPerSecond(), 1100, HEIGHT - 50);
+            sgame.font.draw(sgame.batch, "Length: " + (lastx - Snake.first().x) + " " + (lasty - Snake.first().y) + "    " + Snake.first().x, 200, 130);
+        }
 
         // Show time left or game over
         if (gameOver == false)
@@ -168,10 +180,6 @@ public class Field implements Screen {
             sgame.font.draw(sgame.batch, "  Tap here  ", 6, (3*HEIGHT/4) + 10);
         }
 
-        if (DEBUG == 1)
-        {
-            sgame.font.draw(sgame.batch, "Length: " + (lastx - Snake.first().x) + " " + (lasty - Snake.first().y) + "    " + Snake.first().x, 200, 130);
-        }
     }
 
     public void addressUserInput()
@@ -347,30 +355,53 @@ public class Field implements Screen {
         {
             case 1:
             {
-                int snakeParser = 0;
-                Rectangle head = new Rectangle(Snake.first());
-                for (Rectangle rect : Snake)
+                if (chancesRemaining == 0)
                 {
-                    if (snakeParser > 0)
+                    gameOver = true;
+                }
+                else
+                {
+                    int snakeParser = 0;
+                    Rectangle head = new Rectangle(Snake.first());
+                    for (Rectangle rect : Snake)
                     {
-                        if (head.overlaps(rect))
+                        if (snakeParser > 0)
                         {
-                            gameOver = true;
+                            if (head.overlaps(rect))
+                            {
+                                gameOver = true;
+                            }
                         }
+                        snakeParser++;
                     }
-                    snakeParser++;
                 }
             }
             break;
             case 2:
             {
-                Rectangle head = new Rectangle(Snake.first());
-                if ((head.x < leftPadding) ||
-                    (head.x > (WIDTH - rightPadding)) ||
-                    (head.y > (HEIGHT - topPadding)) ||
-                    (head.y < bottomPadding))
+                if (chancesRemaining == 0)
                 {
                     gameOver = true;
+                }
+                else
+                {
+                    int snakeParser = 0;
+                    Rectangle head = new Rectangle(Snake.first());
+                    for (Rectangle rect : Snake)
+                    {
+                        if (snakeParser > 0)
+                        {
+                            if ((head.x < leftPadding) ||
+                                    (head.x > (WIDTH - rightPadding)) ||
+                                    (head.y > (HEIGHT - topPadding)) ||
+                                    (head.y < bottomPadding) ||
+                                    (head.overlaps(rect)))
+                            {
+                                gameOver = true;
+                            }
+                        }
+                        snakeParser++;
+                    }
                 }
             }
             break;

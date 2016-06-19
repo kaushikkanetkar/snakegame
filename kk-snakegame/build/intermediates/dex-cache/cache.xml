@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/kaushik/projects/kk-snakegame/android/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="ffe4b4b0a12b50058f24d0fbad7721180b140606">
+        <dex dex="/home/kaushik/projects/kk-snakegame/android/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_5ba0a39eccfd62015e91f501aecce383e8996cb1/classes.dex" />
+    </item>
+    <item
+        jar="/root/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.7.0/1b08c96132448b5ab9c0cc8dea3e985dcf0166fd/gdx-1.7.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="1b08c96132448b5ab9c0cc8dea3e985dcf0166fd">
+        <dex dex="/home/kaushik/projects/kk-snakegame/android/build/intermediates/transforms/dex/debug/folders/1000/10/gdx-1.7.0_93cf548e6357afb430c6939d67421baf9f809593/classes.dex" />
+    </item>
+    <item
+        jar="/root/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-box2d/1.7.0/a560f1f94b939f2b5ccd4eec752797c3ea6e1c92/gdx-box2d-1.7.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="a560f1f94b939f2b5ccd4eec752797c3ea6e1c92">
+        <dex dex="/home/kaushik/projects/kk-snakegame/android/build/intermediates/transforms/dex/debug/folders/1000/10/gdx-box2d-1.7.0_b97e08c4bc3224d67fdd45c14d42f96a224b4987/classes.dex" />
+    </item>
+    <item
+        jar="/root/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-backend-android/1.7.0/d8c0e81a68812893d0bf80cea37fbcba9f23d38b/gdx-backend-android-1.7.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="d8c0e81a68812893d0bf80cea37fbcba9f23d38b">
+        <dex dex="/home/kaushik/projects/kk-snakegame/android/build/intermediates/transforms/dex/debug/folders/1000/10/gdx-backend-android-1.7.0_ad4c3ea3dd9f8fafb99c7523a6dcabc285ac332b/classes.dex" />
+    </item>
+    <item
+        jar="/home/kaushik/projects/kk-snakegame/android/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="c1140c9238ea9c376b276564a2c33b108dc09c2c">
+        <dex dex="/home/kaushik/projects/kk-snakegame/android/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_ddfc542413f4146d2ff3d02d41e277e9f034028e/classes.dex" />
+    </item>
+
+</items>
