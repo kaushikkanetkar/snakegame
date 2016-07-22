@@ -40,7 +40,7 @@ public class MainScreen implements Screen{
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 500, 300);
         image = new Texture(Gdx.files.internal("mainscreen.jpg"));
-        mainlogo = new Texture((Gdx.files.internal("logo_main.jpg")));
+        mainlogo = new Texture((Gdx.files.internal("logo_main.jpeg")));
         mode1 = new Rectangle(0, 200, WIDTH/2, 270);
         mode2 = new Rectangle(WIDTH/2 + 1, 200, WIDTH/2, 270);
         font = new BitmapFont();
