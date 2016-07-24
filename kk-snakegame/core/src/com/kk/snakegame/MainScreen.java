@@ -25,7 +25,7 @@ public class MainScreen implements Screen{
     Texture mainlogo;
     Rectangle mode1, mode2;
     Preferences pref;
-    BitmapFont font;
+    BitmapFont font, fontLogo;
     public static final int GFX_WIDTH = Gdx.graphics.getWidth();
     public static final int GFX_HEIGHT = Gdx.graphics.getHeight();
     public static final int WIDTH = 1280;
@@ -38,11 +38,14 @@ public class MainScreen implements Screen{
     {
         sgame = snakeGame;
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 500, 300);
         image = new Texture(Gdx.files.internal("mainscreen.jpg"));
         mainlogo = new Texture((Gdx.files.internal("logo_main.jpeg")));
+        camera.setToOrtho(false, mainlogo.getWidth(), mainlogo.getHeight());
         mode1 = new Rectangle(0, 200, WIDTH/2, 270);
         mode2 = new Rectangle(WIDTH/2 + 1, 200, WIDTH/2, 270);
+        fontLogo = new BitmapFont();
+        fontLogo.getData().setScale(2f);
+        fontLogo.setColor(Color.BLACK);
         font = new BitmapFont();
         font.getData().setScale(2.5f);
         font.setColor(Color.RED);
@@ -78,7 +81,8 @@ public class MainScreen implements Screen{
 
         if (showingLogo == true)
         {
-            sgame.batch.draw(mainlogo, 0, 0, 500, 300);
+            sgame.batch.draw(mainlogo, 0, 0, mainlogo.getWidth(), mainlogo.getHeight());
+            fontLogo.draw(sgame.batch, "Created by Kaushik Kanetkar", mainlogo.getWidth() - 500, 40);
         }
         else
         {

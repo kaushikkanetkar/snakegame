@@ -13,6 +13,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -35,10 +36,10 @@ public class Field implements Screen {
     public static final int RIGHT = 2;
     public static final int TOP = 3;
     public static final int BOTTOM = 4;
-    public static final int snakePieceWidth = 5;
-    public static final int snakePieceHeight = 10;
-    public static final int foodPieceWidth = 10;
-    public static final int foodPieceHeight = 10;
+    public static final int snakePieceWidth = 6;
+    public static final int snakePieceHeight = 12;
+    public static final int foodPieceWidth = 12;
+    public static final int foodPieceHeight = 12;
     public static final int FOOD_DELAY = 10000;
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 768;
@@ -150,8 +151,11 @@ public class Field implements Screen {
             }
         }
 
+        sgame.font.setColor(Color.CYAN);
         // Render the scores
-        sgame.font.draw(sgame.batch, "Score: " + "" + score, 954, HEIGHT - 22);
+        sgame.font.draw(sgame.batch, "Score: " + "" + score, 550, HEIGHT - 22);
+        sgame.font.setColor(Color.WHITE);
+
         sgame.font.draw(sgame.batch, "High Score: " + getHighScore(), 200, HEIGHT - 22);
         sgame.font.draw(sgame.batch, "Chances: " + chancesRemaining, 1095, HEIGHT - 70);
 
@@ -162,7 +166,7 @@ public class Field implements Screen {
 
         // Show time left or game over
         if (gameOver == false) {
-            sgame.font.draw(sgame.batch, "Time left: " + "" + getTimeLeft(), 550, HEIGHT - 22);
+            sgame.font.draw(sgame.batch, "Time left: " + "" + getTimeLeft(), 954, HEIGHT - 22);
         } else {
             sgame.font.draw(sgame.batch, "- Game Over - ", 2, (3 * HEIGHT / 4) + 40);
             sgame.font.draw(sgame.batch, "  Tap here  ", 6, (3 * HEIGHT / 4) + 10);
@@ -216,6 +220,8 @@ public class Field implements Screen {
         bottom = new Rectangle(WIDTH / 2 - 100, 0, 200, 100 - 1);
         exitRect = new Rectangle(0, 3 * HEIGHT / 4, 200, HEIGHT / 4);
         initPrefs();
+
+        sgame.font.getData().setScale(2.0f);
     }
 
     public void initPrefs() {
@@ -381,10 +387,10 @@ public class Field implements Screen {
 
         Snake.insert(1, copyHead);
 
-        Rectangle last = Snake.get(Snake.size - 1);
         if (snakeAte == false) {
             Snake.pop();
         } else {
+            Rectangle last = Snake.get(Snake.size - 1);
             lengthOfSnake++;
             AddOneMoreToSnake(last);
         }
