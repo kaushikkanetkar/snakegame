@@ -1,18 +1,9 @@
-package com.kk.snakegame;
+package com.kk.snakegame.android;
 
 import com.badlogic.gdx.Screen;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Timer;
-import java.util.Vector;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
-import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -22,7 +13,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 
-import sun.rmi.runtime.Log;
 
 /**
  * Created by Kaushik Kanetkar on 10/6/2015.
