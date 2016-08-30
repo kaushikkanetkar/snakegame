@@ -18,7 +18,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 
 
 /**
- * Created by Kaushik Kanetkar on 10/6/2015.
+ * Created by Kaushik Kanetkar
  */
 
 public class MainScreen implements Screen{
