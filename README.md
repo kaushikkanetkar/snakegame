@@ -5,4 +5,4 @@ My current implementation and testing includes only Android.
 
 <B>Version</B>
 --
-0.95
+1.0
