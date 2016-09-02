@@ -202,9 +202,11 @@ public class Field implements Screen {
 
         } else {
             sgame.font.setColor(Color.RED);
-            sgame.font.draw(sgame.batch, "Game Over ! ", 2, (1 * sgame.HEIGHT / 2) + 40);
-            sgame.font.draw(sgame.batch, "  Tap here  ", 6, (1 * sgame.HEIGHT / 2) + 10);
+            sgame.font.getData().setScale(2.3f);
+            sgame.font.draw(sgame.batch, " Game Over!", 4, (1 * sgame.HEIGHT / 2) + 50);
             sgame.font.setColor(Color.WHITE);
+            sgame.font.draw(sgame.batch, "  Tap here ", 6, (1 * sgame.HEIGHT / 2) + 10);
+            sgame.font.getData().setScale(2.0f);
         }
 
     }

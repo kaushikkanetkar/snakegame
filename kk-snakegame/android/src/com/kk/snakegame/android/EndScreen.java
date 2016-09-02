@@ -59,7 +59,7 @@ public class EndScreen implements Screen {
         fontTopScore.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         fontEndGame = new BitmapFont();
         fontEndGame.getData().setScale(3.0f);
-        fontEndGame.setColor(Color.RED);
+        fontEndGame.setColor(Color.WHITE);
         fontEndGame.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         fontServer = new BitmapFont();
         fontServer.getData().setScale(2.5f);
@@ -67,7 +67,7 @@ public class EndScreen implements Screen {
         fontServer.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         fontPlayAgain = new BitmapFont();
         fontPlayAgain.getData().setScale(2.5f);
-        fontPlayAgain.setColor(Color.WHITE);
+        fontPlayAgain.setColor(Color.RED);
         fontPlayAgain.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
     }
 

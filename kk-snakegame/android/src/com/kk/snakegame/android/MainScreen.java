@@ -145,7 +145,7 @@ public class MainScreen implements Screen{
             sgame.batch.draw(image, 0, 0, 1280, 768);
             font.draw(sgame.batch, "High Score: " + sgame.getHighScore(1), 240, 200);
 
-            font.draw(sgame.batch, "High Score: " + sgame.getHighScore(2), 750, 200);
+            font.draw(sgame.batch, "High Score: " + sgame.getHighScore(2), 770, 200);
 
             fontAverageSpeed.draw(sgame.batch, "Average", 1030, sgame.HEIGHT-75);
             fontFastSpeed.draw(sgame.batch, "Fast", 1040, sgame.HEIGHT-135);
