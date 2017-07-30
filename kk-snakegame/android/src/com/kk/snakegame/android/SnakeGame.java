@@ -45,7 +45,7 @@ public class SnakeGame extends Game {
 	public int GFX_HEIGHT;
 
 	SpriteBatch batch;
-    BitmapFont font;
+        BitmapFont font;
 	MainScreen mainScreen;
 	boolean useServer;
 	public int currentTopScore = 0;
